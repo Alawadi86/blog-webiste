@@ -1,0 +1,22 @@
+{% extends 'base.html'%} 
+
+{% block content  %}
+  <div class="post-entry">
+          <h2> {{ post.title }} </h2>
+          <h3>{{ post.author.username}}</h3>
+          <p>{{ post.body }}</p>
+  </div>
+
+  {% endblock content %} 
+<!-- <h2>Posts by same author</h2>
+
+To iterate over all posts 
+     we added apost to distinguish it from post
+  {% for apost in post.author.posts.all %} 
+  <div class="post-entry">
+            <h2><a href="{% url 'post_detail' apost.pk %}">{{ apost.title }}</a></h2>
+            <p>{{ apost.body }}</p>
+  </div>
+{% endfor %} -->
+
+
