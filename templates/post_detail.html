@@ -6,7 +6,7 @@
           <h3>{{ post.author.username}}</h3>
           <p>{{ post.body }}</p>
   </div>
-
+  <a href="{% url 'post_edit' post.pk %}"> + Edit Blog Post</a>
   {% endblock content %} 
 <!-- <h2>Posts by same author</h2>
 
