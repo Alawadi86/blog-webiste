@@ -1,5 +1,6 @@
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 from .models import Post
 
@@ -12,16 +13,26 @@ class BlogListView(ListView):
 
 
 class BlogDetailView(DetailView):
+          """Blog detail """
           model = Post
           template_name ="post_detail.html"
 
 class BlogCreateView(CreateView):
+          """ Blog Create View """
           model = Post
           template_name = "post_new.html"
           fields = ["title", "author", "body"]
-
+          # success_url = "home " you can redirect to a destination of a url
 
 class BlogUpdateView(UpdateView):
+           """ Blog Udate View """
+
+           model = Post
+           template_name = "post_edit.html"
+           fields = ["title", "body"]
+
+class BlogDeleteView(DeleteView):
+          """ Blog Delete View"""
           model = Post
-          template_name = "post_edit.html"
-          fields = ["title", "body"]
+          template_name = "post_delete.html"
+          success_url = reverse_lazy("home")
