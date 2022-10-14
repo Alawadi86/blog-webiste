@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -17,21 +18,21 @@ class BlogDetailView(DetailView):
           model = Post
           template_name ="post_detail.html"
 
-class BlogCreateView(CreateView):
+class BlogCreateView(LoginRequiredMixin, CreateView):
           """ Blog Create View """
           model = Post
           template_name = "post_new.html"
           fields = ["title", "author", "body"]
           # success_url = "home " you can redirect to a destination of a url
 
-class BlogUpdateView(UpdateView):
+class BlogUpdateView(LoginRequiredMixin, UpdateView):
            """ Blog Udate View """
 
            model = Post
            template_name = "post_edit.html"
            fields = ["title", "body"]
 
-class BlogDeleteView(DeleteView):
+class BlogDeleteView(LoginRequiredMixin, DeleteView):
           """ Blog Delete View"""
           model = Post
           template_name = "post_delete.html"
